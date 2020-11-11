@@ -1,7 +1,9 @@
 package asansortalep;
+
 import java.util.ArrayList;
 
-class Musteri{
+class Musteri {
+
     int aktifKat;
     int gidecegiKat;
 
@@ -9,16 +11,23 @@ class Musteri{
         this.aktifKat = aktifKat;
         this.gidecegiKat = gidecegiKat;
     }
-    
+
 }
 
-class Kat{
+class Kat {
+
     int katMusteriSayisi;
-    int katKuyruk;
-    
-    public Kat(){
-        this.katKuyruk=0;
-        this.katMusteriSayisi=0;
+    int katKuyruk;    
+    ArrayList<int[]> kuyruktakiler;
+
+    public Kat() {
+        this.katKuyruk = 0;
+        this.katMusteriSayisi = 0;
+        kuyruktakiler = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            int array[]={0,i};
+            kuyruktakiler.add(array);
+        }
     }
 }
 
@@ -36,7 +45,7 @@ public class Avm {
         this.katSayisi = 5;
         this.asansorSayisi = 5;
         aktifAsansorSayisi = 0;
-        avmMusteriSayisi = 0;        
+        avmMusteriSayisi = 0;
         katlar = new ArrayList<>();
         musteriler = new ArrayList<>();
         asansorler = new ArrayList<>();
