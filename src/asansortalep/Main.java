@@ -1,5 +1,7 @@
 package asansortalep;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
@@ -17,6 +19,7 @@ public class Main {
     static ArrayList<Asansor> asansorler = asansorleriOlustur();
 
     public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(8); //  belli bir anda en fazla kaç Thread çalıştırmak istediğimizi belirtiyoruz.
         Thread basla= new Thread(new LoginThread());
         basla.start();      
 
