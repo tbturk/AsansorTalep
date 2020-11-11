@@ -17,9 +17,14 @@ public class Main {
     static ArrayList<Asansor> asansorler = asansorleriOlustur();
 
     public static void main(String[] args) {
-        Thread basla= new Thread(new LoginThread());
-        basla.start();
+       /* Thread basla= new Thread(new LoginThread());
+        basla.start();*/
        
+        ArrayList<int[]> icindekiler = new ArrayList<>();
+        int array[]={0,2};
+        icindekiler.add(array);
+        System.out.println(icindekiler.get(0)[1]);
+
     }
 
 }

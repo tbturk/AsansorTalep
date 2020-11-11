@@ -13,7 +13,13 @@ class Musteri{
 }
 
 class Kat{
-    private int katMusteriSayisi;
+    int katMusteriSayisi;
+    int katKuyruk;
+    
+    public Kat(){
+        this.katKuyruk=0;
+        this.katMusteriSayisi=0;
+    }
 }
 
 public class Avm {
@@ -24,16 +30,19 @@ public class Avm {
     static int avmMusteriSayisi;
     static ArrayList<Kat> katlar;
     static ArrayList<Musteri> musteriler;
+    static ArrayList<Asansor> asansorler;
 
     public Avm() {
         this.katSayisi = 5;
         this.asansorSayisi = 5;
         aktifAsansorSayisi = 0;
-        avmMusteriSayisi = 0;
-        musteriler = new ArrayList<>();
+        avmMusteriSayisi = 0;        
         katlar = new ArrayList<>();
+        musteriler = new ArrayList<>();
+        asansorler = new ArrayList<>();
         for (int i = 0; i < katSayisi; i++) {
             katlar.add(new Kat());
+            asansorler.add(new Asansor());
         }
     }
 
