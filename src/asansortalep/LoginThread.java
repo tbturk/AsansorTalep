@@ -18,12 +18,12 @@ public class LoginThread implements Runnable {
                 Avm.musteriler.add(new Musteri(0, kat));
                 Avm.katlar.get(0).kuyruktakiler.get(kat)[0] += 1;   // ilgili katın kuyrukta bekleyen kişi sayısını artırdık
             }
-            /*
+            
             System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(1)[0] + ",1]");
             System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(2)[0] + ",2]");
             System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(3)[0] + ",3]");
             System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(4)[0] + ",4]");
-            System.out.println(Avm.avmMusteriSayisi);*/
+            System.out.println(Avm.avmMusteriSayisi);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

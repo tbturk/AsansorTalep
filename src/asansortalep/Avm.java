@@ -17,15 +17,15 @@ class Musteri {
 class Kat {
 
     int katMusteriSayisi;
-    int katKuyruk;    
-    ArrayList<int[]> kuyruktakiler;
+    int katKuyruk;    // kattaki kişiler
+    ArrayList<int[]> kuyruktakiler; // kaç kişinin hangi kata gitmek istediği
 
     public Kat() {
         this.katKuyruk = 0;
         this.katMusteriSayisi = 0;
         kuyruktakiler = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int array[]={0,i};
+            int array[]={0,i}; // i. kata gitmek isteyenlerin oluştaracağı kuyruğa ilk başta 0 atadık.
             kuyruktakiler.add(array);
         }
     }

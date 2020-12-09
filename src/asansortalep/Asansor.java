@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Asansor {
 
     //*** DEĞİŞKEN TANIMLAMALARI ***/
-    private boolean durum;   // true: çalışıyor    false: boşta
-    private final int kapasite;
-    private final int gecisZaman;
+    private boolean durum;   // true: asansör aktif    false: asansör pasif
+    private final int kapasite; // Asansörlerin maksimum kapasitesi 10
+    private final int gecisZaman; // Asansörlerdeki kat arası geçiş 200 ms
     private int aktifKapasite;  // [0-10]
     private int aktifKat;       // [0-4]
-    private int gidecegiKat;    // [1-4]
+    private int gidecegiKat;    // [0-4]
     private boolean yon;     // true: yukarı    false: aşağı
     ArrayList<int[]> icindekiler;
     public Asansor() {
