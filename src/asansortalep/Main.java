@@ -1,4 +1,5 @@
 package asansortalep;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -8,10 +9,10 @@ public class Main {
     public static ArrayList<Asansor> asansorleriOlustur() {
         ArrayList<Asansor> asansorDizi = new ArrayList<>();
         for (int i = 0; i < avm.getAsansorSayisi(); i++) {
-            asansorDizi.add(new Asansor());            
+            asansorDizi.add(new Asansor());
         }
         asansorDizi.get(0).setDurum(true); // ilk asansör default aktif olarak tanımlanır
-        Avm.aktifAsansorSayisi+=1;
+        Avm.aktifAsansorSayisi += 1;
         return asansorDizi;
     }
 
@@ -20,9 +21,13 @@ public class Main {
 
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(8); //  belli bir anda en fazla kaç Thread çalıştırmak istediğimizi belirtiyoruz.
-        Thread basla= new Thread(new LoginThread());
-        basla.start();      
-
+        Thread basla = new Thread(new LoginThread());
+        ArrayList<Thread> asansorTiredler = new ArrayList();
+        for (int i = 0; i < 5; i++) {
+            asansorTiredler.add(new Thread(new AsansorThread(i)));
+        }
+        basla.start();        
+        asansorTiredler.get(0).start();
     }
 
 }

@@ -12,14 +12,14 @@ public class Asansor {
     private int aktifKat;       // [0-4]
     private int gidecegiKat;    // [0-4]
     private boolean yon;     // true: yukarı    false: aşağı
-    ArrayList<int[]> icindekiler;
+    int[][] icindekiler;
     public Asansor() {
         this.durum = false;
         this.kapasite = 10;
         this.gecisZaman = 200;
         this.aktifKapasite = 0;
         this.aktifKat = 0;
-        icindekiler = new ArrayList<>();
+        icindekiler = new int [5][1];
         this.yon = true;
     }
 

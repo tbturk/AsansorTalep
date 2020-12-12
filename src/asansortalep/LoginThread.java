@@ -8,22 +8,25 @@ public class LoginThread implements Runnable {
 
     @Override
     public void run() {
+        
         Random r = new Random();
         while (true) {
+            //System.out.println("1");
             int sayi = r.nextInt(10) + 1;       // kaç kişinin giriş yaptığı
             Avm.avmMusteriSayisi += sayi;
             Avm.katlar.get(0).katKuyruk += sayi;
-            for (int i = 0; i < sayi; i++) {
-                int kat = r.nextInt(4) + 1;     // giriş yapan kişinin hangi kata gideceği
-                Avm.musteriler.add(new Musteri(0, kat));
-                Avm.katlar.get(0).kuyruktakiler.get(kat)[0] += 1;   // ilgili katın kuyrukta bekleyen kişi sayısını artırdık
-            }
+            Avm.katlar.get(0).katMusteriSayisi += sayi;
+            int kat = r.nextInt(4) + 1; 
+            int[] kuyruk = new int[2];
+            kuyruk[0]=sayi;
+            kuyruk[1]=kat;
+            Avm.katlar.get(0).kuyruktakiler.add(kuyruk);  // ilgili katın kuyrukta bekleyen kişi sayısını artırdık
+            for (int i = 0; i < sayi; i++) { // giriş yapan kişinin hangi kata gideceği
+                Avm.musteriler.add(new Musteri(0, kat));              
+            }            
+           
             
-            System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(1)[0] + ",1]");
-            System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(2)[0] + ",2]");
-            System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(3)[0] + ",3]");
-            System.out.println("[" + Avm.katlar.get(0).kuyruktakiler.get(4)[0] + ",4]");
-            System.out.println(Avm.avmMusteriSayisi);
+            //System.out.println(Avm.katlar.get(0).katKuyruk);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
