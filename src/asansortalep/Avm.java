@@ -36,7 +36,8 @@ public class Avm {
     static ArrayList<Kat> katlar;
     static ArrayList<Musteri> musteriler;
     static ArrayList<Asansor> asansorler;
-
+    static int sonAsansorIndex=0;
+    static int cikisYapanSayi=0;
     public Avm() {
         this.katSayisi = 5;
         this.asansorSayisi = 5;
@@ -49,6 +50,10 @@ public class Avm {
             katlar.add(new Kat());
             asansorler.add(new Asansor());
         }
+        for (int i = 1; i < katSayisi; i++) {
+            katlar.get(i).kuyruktakiler.add(new int[2]);
+        }
+        
     }
 
     public int getKatSayisi() {

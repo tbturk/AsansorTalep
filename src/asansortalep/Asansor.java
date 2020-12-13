@@ -1,12 +1,10 @@
 package asansortalep;
 
-import java.util.ArrayList;
-
 public class Asansor {
 
     //*** DEĞİŞKEN TANIMLAMALARI ***/
     private boolean durum;   // true: asansör aktif    false: asansör pasif
-    private final int kapasite; // Asansörlerin maksimum kapasitesi 10
+    static final int kapasite = 10; // Asansörlerin maksimum kapasitesi 10
     private final int gecisZaman; // Asansörlerdeki kat arası geçiş 200 ms
     private int aktifKapasite;  // [0-10]
     private int aktifKat;       // [0-4]
@@ -15,7 +13,6 @@ public class Asansor {
     int[][] icindekiler;
     public Asansor() {
         this.durum = false;
-        this.kapasite = 10;
         this.gecisZaman = 200;
         this.aktifKapasite = 0;
         this.aktifKat = 0;

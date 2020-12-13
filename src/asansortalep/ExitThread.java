@@ -15,17 +15,17 @@ public class ExitThread implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(LoginThread.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int sayi = r.nextInt(5) + 1;       // kaç kişinin çıkış yapacağı
-            int belirlenen = 0;
-            while (belirlenen < sayi) {
-                int kat = r.nextInt(4) + 1;
-                if (Avm.katlar.get(kat).katMusteriSayisi != 0) {                    
-                    Avm.katlar.get(kat).katKuyruk++;
-                    Avm.katlar.get(kat).kuyruktakiler.get(0)[0]++;
-                    belirlenen++;
-                }
+            int kat = 0;
+            int cikisSayi = 0;
+            cikisSayi = r.nextInt(5) + 1;       // kaç kişinin çıkış yapacağı
+            kat = r.nextInt(4) + 1;
+            while (Avm.katlar.get(kat).katMusteriSayisi < cikisSayi) {
+                cikisSayi = r.nextInt(5) + 1;
+                kat = r.nextInt(4) + 1;
             }
-
+            Avm.katlar.get(kat).katKuyruk += cikisSayi;
+            Avm.katlar.get(kat).kuyruktakiler.get(0)[0] += cikisSayi;
+            //System.out.println(kat + ". kata " + cikisSayi + " kuyruk eklendi");
         }
 
     }

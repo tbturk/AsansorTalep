@@ -11,23 +11,32 @@ public class Main {
         for (int i = 0; i < avm.getAsansorSayisi(); i++) {
             asansorDizi.add(new Asansor());
         }
-        asansorDizi.get(0).setDurum(true); // ilk asansör default aktif olarak tanımlanır
-        Avm.aktifAsansorSayisi += 1;
         return asansorDizi;
     }
 
     static Avm avm = new Avm();
-    static ArrayList<Asansor> asansorler = asansorleriOlustur();
+    static ArrayList<Thread> asansorTiredler = new ArrayList();    
 
     public static void main(String[] args) {
+        Avm.asansorler=asansorleriOlustur();                
+        Avm.asansorler.get(0).setDurum(true); // ilk asansör default aktif olarak tanımlanır
+        Avm.aktifAsansorSayisi += 1;
+        
         ExecutorService executor = Executors.newFixedThreadPool(8); //  belli bir anda en fazla kaç Thread çalıştırmak istediğimizi belirtiyoruz.
-        Thread basla = new Thread(new LoginThread());
-        ArrayList<Thread> asansorTiredler = new ArrayList();
+        Thread giris = new Thread(new LoginThread());
+        Thread cikis = new Thread(new ExitThread());
+        Thread kontrol = new Thread(new KontrolThread());
+        
         for (int i = 0; i < 5; i++) {
             asansorTiredler.add(new Thread(new AsansorThread(i)));
+            asansorTiredler.get(i).start();
+            asansorTiredler.get(i).suspend();
         }
-        basla.start();        
-        asansorTiredler.get(0).start();
+        
+        giris.start();
+        kontrol.start();
+        asansorTiredler.get(0).resume();
+        cikis.start();
     }
 
 }
