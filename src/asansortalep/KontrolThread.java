@@ -8,6 +8,7 @@ public class KontrolThread implements Runnable {
     @Override
     public void run() {
         while (true) {
+
             int kuyruktakiSayi = 0;
             for (int i = 0; i < Avm.katlar.size(); i++) {
                 kuyruktakiSayi += Avm.katlar.get(i).katKuyruk;

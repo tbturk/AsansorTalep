@@ -19,12 +19,17 @@ public class LoginThread implements Runnable {
             int[] kuyruk = new int[2];
             kuyruk[0] = sayi;
             kuyruk[1] = kat;
+
+            //System.out.println(sayi+","+kat);
             Avm.katlar.get(0).kuyruktakiler.add(kuyruk);  // ilgili katın kuyrukta bekleyen kişi sayısını artırdık
             for (int i = 0; i < sayi; i++) { // giriş yapan kişinin hangi kata gideceği
                 Avm.musteriler.add(new Musteri(0, kat));
             }
-
-            System.out.println("0. floor : queue : " + Avm.katlar.get(0).katKuyruk);
+            int kuyruk0=0;
+            for (int i = 0; i < Avm.katlar.get(0).kuyruktakiler.size(); i++) {
+                 kuyruk0+=Avm.katlar.get(0).kuyruktakiler.get(i)[0];
+            }
+            System.out.println("0. floor : queue : " + kuyruk0);
             for (int i = 1; i < Avm.katlar.size(); i++) {
                 System.out.println(i + ". floor :all : " + Avm.katlar.get(i).katMusteriSayisi + "  queue : " + Avm.katlar.get(i).katKuyruk);
             }
@@ -46,7 +51,7 @@ public class LoginThread implements Runnable {
                 System.out.println("\t\t capacity:" + Avm.asansorler.get(i).getKapasite());
                 System.out.println("\t\t count_inside:" + Avm.asansorler.get(i).getAktifKapasite());
                 System.out.print("\t\t inside:[");
-                for (int j = 0; j < 5; j++) {
+                for (int j = 0; j < Avm.katlar.size(); j++) {
                     if (Avm.asansorler.get(i).icindekiler[j][0] != 0) {
                         System.out.print("(" + Avm.asansorler.get(i).icindekiler[j][0] + ", " + j + ")");
                     }
@@ -55,15 +60,15 @@ public class LoginThread implements Runnable {
                 System.out.println("");
             }
             for (int i = 0; i < Avm.katlar.size(); i++) {
-                System.out.print(i+". floor : [");
+                System.out.print(i + ". floor : [");
                 for (int j = 0; j < Avm.katlar.get(i).kuyruktakiler.size(); j++) {
-                    System.out.print("[ "+Avm.katlar.get(i).kuyruktakiler.get(j)[0]+", "+Avm.katlar.get(i).kuyruktakiler.get(j)[1]+"] ");
+                    System.out.print("[ " + Avm.katlar.get(i).kuyruktakiler.get(j)[0] + ", " + Avm.katlar.get(i).kuyruktakiler.get(j)[1] + "] ");
                 }
                 System.out.print("]");
                 System.out.println("");
             }
             System.out.println("\n\n------------------------------------------\n\n");
-            
+
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

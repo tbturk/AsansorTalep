@@ -22,7 +22,7 @@ class Kat {
 
     public Kat() {
         this.katKuyruk = 0;
-        this.katMusteriSayisi = 0; 
+        this.katMusteriSayisi = 0;
         kuyruktakiler = new ArrayList();
     }
 }
@@ -36,8 +36,9 @@ public class Avm {
     static ArrayList<Kat> katlar;
     static ArrayList<Musteri> musteriler;
     static ArrayList<Asansor> asansorler;
-    static int sonAsansorIndex=0;
-    static int cikisYapanSayi=0;
+    static int sonAsansorIndex = 0;
+    static int cikisYapanSayi = 0;
+
     public Avm() {
         this.katSayisi = 5;
         this.asansorSayisi = 5;
@@ -53,7 +54,7 @@ public class Avm {
         for (int i = 1; i < katSayisi; i++) {
             katlar.get(i).kuyruktakiler.add(new int[2]);
         }
-        
+
     }
 
     public int getKatSayisi() {

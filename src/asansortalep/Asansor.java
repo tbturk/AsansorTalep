@@ -11,12 +11,13 @@ public class Asansor {
     private int gidecegiKat;    // [0-4]
     private boolean yon;     // true: yukarı    false: aşağı
     int[][] icindekiler;
+
     public Asansor() {
         this.durum = false;
         this.gecisZaman = 200;
         this.aktifKapasite = 0;
         this.aktifKat = 0;
-        icindekiler = new int [5][1];
+        icindekiler = new int[5][1];
         this.yon = true;
     }
 

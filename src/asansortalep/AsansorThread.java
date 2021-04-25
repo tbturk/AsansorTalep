@@ -14,30 +14,24 @@ public class AsansorThread implements Runnable {
     @Override
     public void run() {
         while (true) {
-            /*
-            for (int i = 0; i < Avm.katlar.get(0).kuyruktakiler.size(); i++) {
-                System.out.println(Avm.katlar.get(0).kuyruktakiler.get(i)[0] + "," + Avm.katlar.get(0).kuyruktakiler.get(i)[1]);
-            }
-            System.out.println("");
-            ln(index + ". asansor aktif kat: " + Avm.asansorler.get(index).getAktifKat() + "  aktifKapasite: " + Avm.asansorler.get(index).getAktifKapasite());
-             */
             if (Avm.asansorler.get(index).isYon() == true && Avm.asansorler.get(index).getAktifKat() == 0 && Avm.asansorler.get(index).isDurum() == true) {
+                Avm.asansorler.get(index).setAktifKapasite(0);//içindeki tüm elemanları bıraktı çünkü
                 int eklenenKisi = 0;
                 int silinecekIndexAdet = 0;
-                for (int i = 0; i < Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.size(); i++) {
-                    if (Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[0] + eklenenKisi <= 10) {
-                        eklenenKisi += Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[0];
+                for (int i = 0; i < Avm.katlar.get(0).kuyruktakiler.size(); i++) {
+                    if (Avm.katlar.get(0).kuyruktakiler.get(i)[0] + eklenenKisi <= 10) {
+                        eklenenKisi += Avm.katlar.get(0).kuyruktakiler.get(i)[0];
                         silinecekIndexAdet++;
                         //asansöre ekleme islemi burda yapıldı /
-                        Avm.asansorler.get(index).icindekiler[Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[1]][0] += Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[0];
+                        Avm.asansorler.get(index).icindekiler[Avm.katlar.get(0).kuyruktakiler.get(i)[1]][0] += Avm.katlar.get(0).kuyruktakiler.get(i)[0];
                         Avm.asansorler.get(index).setAktifKapasite(eklenenKisi);
                     } else {
                         if (eklenenKisi < 10) { // asansörede 10dan az kişi var ise geri kalan kısmı doldurmak için işlemler
-                            for (int j = 0; j < Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[0]; j++) {
+                            for (int j = 0; j < Avm.katlar.get(0).kuyruktakiler.get(i)[0]; j++) {
                                 eklenenKisi++;
                                 //asansöre ekleme islemi yapılacak burda
-                                Avm.asansorler.get(index).icindekiler[Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[1]][0]++;
-                                Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(i)[0]--;
+                                Avm.asansorler.get(index).icindekiler[Avm.katlar.get(0).kuyruktakiler.get(i)[1]][0]++;
+                                Avm.katlar.get(0).kuyruktakiler.get(i)[0]--;
                                 Avm.asansorler.get(index).setAktifKapasite(eklenenKisi);
                                 if (eklenenKisi == 10) {
                                     break;
@@ -46,10 +40,10 @@ public class AsansorThread implements Runnable {
                         }
                     }
                 }
-                Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).katKuyruk -= eklenenKisi;
-                Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).katMusteriSayisi -= eklenenKisi;
+                Avm.katlar.get(0).katKuyruk -= eklenenKisi;
+                Avm.katlar.get(0).katMusteriSayisi -= eklenenKisi;
                 for (int i = 0; i < silinecekIndexAdet; i++) {
-                    Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.remove(0);
+                    Avm.katlar.get(0).kuyruktakiler.remove(0);
                 }
                 for (int i = 0; i < Avm.katlar.size(); i++) {
                     if (Avm.asansorler.get(index).icindekiler[i][0] != 0) {
@@ -58,19 +52,7 @@ public class AsansorThread implements Runnable {
                     }
                 }
 
-            }/*
-            System.out.println("------------------");
-            for (int i = 0; i < 5; i++) {
-                System.out.println(Avm.asansorler.get(index).icindekiler[i][0] + "," + i);
             }
-            System.out.println("------------------");
-            System.out.println("");
-            System.out.println("**");
-            for (int i = 1; i < 5; i++) {
-                System.out.println(i + ".kat kuyruk = " + Avm.katlar.get(i).katKuyruk);
-            }
-            System.out.println("**");*/
-
             try {
                 Thread.sleep(Avm.asansorler.get(index).getGecisZaman());
             } catch (InterruptedException ex) {
@@ -115,11 +97,11 @@ public class AsansorThread implements Runnable {
                 } else {
                     if (Avm.asansorler.get(index).getAktifKapasite() < 10) {
                         for (int i = 0; i < Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(0)[0]; i++) {
-                            Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).katKuyruk -= 1;
+                            Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).katKuyruk--;
                             Avm.cikisYapanSayi += 1;
-                            Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(0)[0] -= 1;
-                            Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).katMusteriSayisi -= 1;
-                            Avm.asansorler.get(index).icindekiler[0][0] += 1;
+                            Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).kuyruktakiler.get(0)[0]--;
+                            Avm.katlar.get(Avm.asansorler.get(index).getAktifKat()).katMusteriSayisi--;
+                            Avm.asansorler.get(index).icindekiler[0][0]++;
                             Avm.asansorler.get(index).setAktifKapasite(Avm.asansorler.get(index).getAktifKapasite() + 1);
                             if (Avm.asansorler.get(index).getAktifKapasite() == 10) {
                                 break;
